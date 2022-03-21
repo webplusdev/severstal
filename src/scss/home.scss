@@ -26,7 +26,7 @@
         z-index: 5;
         transform: translateX(-50%);
         animation: mouse-anim;
-        animation-duration: 3s;
+        animation-duration: 1s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         animation-direction: alternate;
@@ -92,7 +92,7 @@
     }
     &__content {
         flex: 0 0 100%;
-        margin-bottom: rem(80);
+        @include adaptive ("margin-bottom", 80, 40);
 
     }
 
@@ -174,7 +174,7 @@
 
     &__img {
         padding-top: rem(270);
-        transition: all 1.5s ease 1s;
+        transition: all 1.5s ease 1.5s;
         opacity: 0;
 
         @media (min-width: $laptop2) {
@@ -211,14 +211,16 @@
             display: flex;
             justify-content: flex-end;
             padding-top: 0;
+            padding-left: rem(20);
+            flex: 0 0 rem(200);
         }
     }
 }
 
 
 .about-block {
-    @include adaptive("padding-top", 85, 70);
-    @include adaptive("padding-bottom", 120, 70);
+    @include adaptive("padding-top", 85, 50);
+    @include adaptive("padding-bottom", 120, 50);
     font-size: rem(20);
     line-height: 1.2;
     font-weight: 400;
@@ -240,7 +242,17 @@
     &__item {
 
     }
+    &._active {
+        .page__blocks {
+            opacity: 1;
+        }
+    }
 }
+
+.about-block._active .page__blocks {
+    opacity: 1;
+}
+
 .goal-item {
 
     &__title {
@@ -363,7 +375,7 @@
 
     &__title {
         transition: all .5s ease 3.5s;
-        transform: translate(0, 200%);
+        transform: translate(0, 100%);
         opacity: 0;
         &._active {
             transform: translate(0, 0);
@@ -378,8 +390,8 @@
         &:not(:last-child) {
             margin-bottom: rem(35);
         }
-        transition: all .5s ease 1s;
-        transform: translate(0, 200%);
+        transition: all .5s ease 1.5s;
+        transform: translate(0, 100%);
         opacity: 0;
         &._active {
             transform: translate(0, 0);
@@ -389,8 +401,8 @@
 
     &__list {
         max-width: rem(575);
-        transition: all .5s ease 1.5s;
-        transform: translate(0, 200%);
+        transition: all .5s ease 1.3s;
+        transform: translate(0, 100%);
         opacity: 0;
         &._active {
             transform: translate(0, 0);
@@ -475,7 +487,7 @@
         margin-bottom: rem(90);
         @include adaptive("font-size", 24, 18);
         transition: all .5s ease 1.5s;
-        transform: translate(0, 200%);
+        transform: translate(0, 100%);
         opacity: 0;
         &._active {
             transform: translate(0, 0);
@@ -485,7 +497,7 @@
 
     &__graph {
         padding: 0 rem(15);
-        transition: all .5s ease .3s;
+        transition: all .5s ease .2s;
         transform: translate(0, 100%);
         opacity: 0;
         &._active {
@@ -528,7 +540,7 @@
         @include adaptive("padding-right", 60, 5);
         img {
             width: 0;
-            transition: width 4s ease .5s;
+            transition: width 4s ease .4s;
             &._active {
                width: 100%;
             }
@@ -649,7 +661,7 @@
     }
 
     &__table {
-        transition: all .5s ease .6s;
+        transition: all .5s ease 1.2s;
         transform: translate(0, 30%);
         opacity: 0;
 

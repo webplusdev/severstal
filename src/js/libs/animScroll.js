@@ -13,7 +13,7 @@ if (animatedItems.length > 0) {
             const animatedItem = animatedItems[index];
             const animatedItemHeight = animatedItem.offsetHeight;
             const animatedItemOffset = offset(animatedItem).top;
-            const animationStart = 4;
+            const animationStart = 10;
 
             let animatedItemPoint = window.innerHeight - animatedItemHeight / animationStart;
 
@@ -21,7 +21,7 @@ if (animatedItems.length > 0) {
                 animatedItemPoint = window.innerHeight - animatedItemHeight / animationStart;
             }
 
-            if ((pageYOffset > animatedItemOffset - animatedItemPoint) && pageYOffset < (animatedItemOffset + animatedItemHeight)) {
+            if ((scrollY > animatedItemOffset - animatedItemPoint) && scrollY < (animatedItemOffset + animatedItemHeight)) {
                 animatedItem.classList.add('_active');
                 if (animatedItem.classList.contains('results-block__values')) {
 
@@ -54,8 +54,8 @@ if (animatedItems.length > 0) {
 
     function LaunchCounter() {
         if (!counterStopped) {
-            let counter1 = setInterval(counting1, 100);
-            let counter2 = setInterval(counting2, 50);
+            let counter1 = setInterval(counting1, 80);
+            let counter2 = setInterval(counting2, 20);
 
             function counting1() {
 

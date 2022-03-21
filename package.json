@@ -4,7 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "type": "module",
-  "homepage": "https://webplusdev.github.io/ilc_website",
+  "homepage": "https://webplusdev.github.io/severstal",
   "scripts": {
     "dev": "gulp",
     "build": "gulp build --build",
