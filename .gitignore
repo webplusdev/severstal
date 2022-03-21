@@ -1,0 +1,10 @@
+.DS_Store
+.srcleDouble
+.LSOverride
+.vs
+
+node_modules/
+src/css/
+gulp/
+gulpfile.js
+package-lock.json

@@ -1,0 +1,200 @@
+@use "sass:math";
+//=Mixins=
+@import "base/mixins";
+
+//=Fonts=
+//if plugin is used
+//&display=swap 
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+//if local font files exist
+@import "fonts/fonts";
+
+//=Icon Fonts=
+//if icon font file exist
+//@import "fonts/icons";
+
+//Default font
+$fontFamily: 'ProximaNova', sans-serif;
+//14 - размер шрифта по умолчанию из макета
+$fontSize: rem(20);
+
+//Colors
+$mainColor: #fff;
+
+
+//Settings
+//Minimal width of the page
+$minWidth: 320;
+//Width of the canvas
+$maxWidth: 1920;
+//Container width
+$maxWidthContainer: 1360;
+//Container padding (half each)
+$containerPadding: 30;
+
+//Responsiveness type (1 - no breakpoints, 2 - change of the width by breakpoints)
+$responsiveType: 1;
+//Width of the first breakpoint
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+//Breakpoints
+$pc: em($containerWidth); // pc, laptops, some tablets in horizontal orientation
+$desktop1: em(1750.98);
+$desktop2: em(1640.98);
+$laptop: em(1510.98);
+$laptop2: em(1439.98);
+$tablet: em(991.98); //tablets, horizontal phones
+$mobile: em(767.98); //phones l
+$mobileSmall: em(479.98); //phones s
+
+//=Null styles=
+@import "base/null";
+
+html, body {
+    height: 100%;
+}
+
+
+body {
+    font-family: $fontFamily;
+    font-weight: 400;
+    font-size: $fontSize;
+    color: $mainColor;
+   // background-color: $bg;
+    // scroll disabled
+    .lock & {
+        overflow: hidden;
+        touch-action: none;
+    }
+}
+
+
+//Wrapper
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    //Website is loaded
+    .loaded & {
+
+    }
+    //Footer to the bottom
+    > main {
+        flex: 1 1 auto;
+    }
+    // bug fixed for slider
+    > * {
+        min-width: 0;
+    }
+}
+
+//=Container=
+//Styles are applied to the classes that contain *__container (header__container) 
+@if ($responsiveType==1) {
+    //responsive
+    [class*="__container"] {
+        @if ($maxWidthContainer > 0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+            margin: 0 auto;
+        }
+        @if ($containerPadding > 0) {
+            padding: 0 rem(math.div($containerPadding, 2));
+        }
+    }
+} @else {
+    //By breakpoints
+    [class*="__container"] {
+        margin: 0 auto;
+        @if ($maxWidthContainer>0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+        } @else {
+            @if ($containerPadding>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+        @media (max-width: $pc) {
+            max-width: rem(970);
+        }
+        @media (max-width: $tablet) {
+            max-width: rem(750);
+        }
+        @media (max-width: $mobile) {
+            max-width: none;
+            @if($containerPadding>0 and $maxWidthContainer>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+    }
+}
+
+.page {
+    &__main-block {
+    }
+
+    &__about-block {
+    }
+
+    &__results-block {
+    }
+    
+    &__figures-block {
+    }
+
+    &__blocks {
+        opacity: 0;
+        transition: opacity .7s ease 0s;
+        &._active {
+            opacity: 1;
+        }
+
+    }
+
+}
+
+.title {
+    font-size: rem(44);
+    line-height: math.div(50, 44);
+    font-weight: 700;
+    &_item {
+        line-height: math.div(32, 36);
+        font-weight: 700;
+        opacity: 0;
+        transform: translate(0, 200%);
+        @include adaptive("font-size", 36, 28);
+        &:not(:last-child) {
+            margin-bottom: rem(33);
+        }
+        &._active {
+            transform: translate(0,0);
+            opacity: 1;
+        }
+    }
+    @include adaptive("font-size", 36, 28);
+}
+
+.text {
+    font-size: rem(20);
+    line-height: math.div(28, 20);
+    font-weight: 400;
+}
+
+
+//@import "./libs/tippy";
+//@import "./libs/swiper";
+
+//Base styles, templates, blanks
+@import "base";
+@import "base/ibg";
+
+//Styles for common elements
+@import "common";
+//Styles for separate blocks
+//@import "header";
+@import "footer";
+
+//Styles for separate pages
+@import "home";
+

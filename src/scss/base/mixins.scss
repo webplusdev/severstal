@@ -1,0 +1,55 @@
+//=Convert px into responsive values=
+
+//to %
+@function prc($pxOne, $pxTwo) {
+    $result: math.div($pxOne, $pxTwo) * 100%;
+    @return $result;
+  }
+  
+  //rem
+  @function rem($px) {
+    $result: math.div($px, 16) + rem;
+    @return $result;
+  }
+  
+  //em
+  @function em($px, $val:16) {
+    $result: math.div($px, $val) + em;
+    @return $result;
+  }
+  
+//=adaptive mixin=
+@mixin adaptive ($property, $start, $end, $max:$containerWidth, $min:320, $type:1) {
+    $addSize: $start - $end;
+    @if $type == 1 {
+        #{$property}: math.div($start, 16) + rem;
+        @media (max-width: #{math.div($max, 16) + rem}) {
+            #{$property}: calc(#{math.div($end, 16) + rem} + #{math.div($addSize, 16)} * ((100vw - #{math.div($min, 16)+rem}) / #{math.div($max, 16) - math.div($min, 16)}));
+        }
+        @if $min > 320 {
+            @media (max-width: #{math.div($min, 16) + rem}) {
+                #{$property}: math.div($end, 16) + rem;
+            }
+        }
+     } 
+     @else if $type == 2 {
+            #{$property}: math.div($start, 16) + rem;
+            @media (min-width: #{math.div($containerWidth, 16) + rem}) {
+                #{$property}: calc(#{math.div($start, 16) + rem} + #{math.div($addSize, 16)} * ((100vw - #{math.div(320, 16)+rem}) / #{math.div($maxWidth, 16) - math.div(320, 16)}));
+            }
+        }
+    @else {
+        #{$property}: calc(#{math.div($start, 16) + rem} + #{math.div($addSize, 16)} * ((100vw - #{math.div(320, 16)+rem}) / #{math.div($maxWidth, 16) - math.div(320, 16)}));
+    }
+}
+
+/* @media (max-width: 1200px) {
+    .menu__item {
+        &:nth-child(3) {
+            padding-right: calc(10px + (216 - 10) * ((100vw - 320px) / (1200 - 320)));
+        }
+        &:nth-child(4) {
+            padding-left: calc(10px + (216 - 10) * ((100vw - 320px) / (1200 - 320)));
+        }
+    }
+} */

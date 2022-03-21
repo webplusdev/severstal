@@ -1,0 +1,18 @@
+.button {
+    display: inline-block;
+    background-color: $mainColor;
+    border-radius: rem(15);
+    font-size: rem(16);
+    font-weight: 700;
+    text-align: center;
+    padding: em(16, 16) em(32, 16);
+    color: #fff;
+    line-height: math.div(18, 16);
+    transition: background-color .3s ease 0s;
+    cursor: pointer;
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: #3B55E3;
+        }
+    }
+}

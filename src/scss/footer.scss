@@ -1,0 +1,99 @@
+.footer {
+    @include adaptive("padding-top", 243, 50);
+    @include adaptive("padding-bottom", 233, 50);
+    min-height: 100vh;
+    text-align: center;
+    &__container {
+    }
+
+    &__title {
+        &:not(:last-child) {
+            margin-bottom: rem(45);
+        }
+    }
+
+    &__block {
+        opacity: 0;
+        transform: translate(-100%, 0);
+       
+        &:not(:last-child) {
+            @include adaptive("margin-bottom", 125, 50);
+        }
+        &._active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        &:first-child {
+            transition: all .9s ease 0s;
+        }
+        &:nth-child(2) {
+            transition: all .9s ease 0.5s;
+        }
+        &:nth-child(3) {
+            transition: all .9s ease 1s;
+        }
+    }
+
+    &__btn {
+        font-size: rem(18);
+        line-height: math.div(22, 18);
+        color: #fff;
+        padding: em(8,18) em(32,18);
+        border: 1px solid #fff;
+
+        transition: background-color .3s ease 0s;
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: rgba(255, 255, 255, .2);
+            }
+        }
+
+    }
+
+    &__subtitle {
+        line-height: math.div(50, 36);
+        font-weight: 700;
+        @include adaptive("font-size", 36, 24);
+        &:not(:last-child) {
+            margin-bottom: rem(28);
+        }
+    }
+
+    &__list {
+
+    }
+
+    &__item {
+    }
+
+    &__link {
+        font-size: rem(20);
+        line-height: math.div(40, 20);
+        text-transform: uppercase;
+        color: #fff;
+        @media (any-hover: hover) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__label {
+        &:not(:last-child) {
+            margin-bottom: rem(32);
+        }
+    }
+
+    &__phone {
+        line-height: 1.2;
+        font-weight: 700;
+        color: #ffffff;
+        @include adaptive("font-size", 48, 28);
+        @media (any-hover: hover) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
